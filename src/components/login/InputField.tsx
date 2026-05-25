@@ -33,25 +33,25 @@ export default function InputField({
         className={cn(
           'relative rounded-xl border-2 transition-colors duration-200',
           error
-            ? 'border-red-400 bg-red-50/50'
+            ? 'border-red-400 bg-red-500/10'
             : focused
-              ? 'border-primary-500 bg-primary-50/30'
-              : 'border-neutral-200 bg-white hover:border-neutral-300',
+              ? 'border-primary-500 bg-primary-500/10'
+              : 'border-white/20 bg-white/5 hover:border-white/30',
         )}
         animate={{
           boxShadow: focused
-            ? '0 0 0 4px rgba(99, 102, 241, 0.08)'
+            ? '0 0 0 4px rgba(99, 102, 241, 0.12)'
             : error
-              ? '0 0 0 4px rgba(239, 68, 68, 0.08)'
+              ? '0 0 0 4px rgba(239, 68, 68, 0.12)'
               : '0 0 0 0px rgba(0,0,0,0)',
         }}
         transition={{ duration: 0.2 }}
       >
-        <div className="flex items-center px-4 py-3.5">
+        <div className="flex items-center px-4 py-4">
           <motion.span
             className={cn(
               'shrink-0 transition-colors duration-200',
-              isActive ? 'text-primary-500' : error ? 'text-red-400' : 'text-neutral-400',
+              isActive ? 'text-primary-400' : error ? 'text-red-400' : 'text-white/50',
             )}
           >
             {icon}
@@ -60,10 +60,10 @@ export default function InputField({
           <div className="relative ml-3 flex-1">
             <motion.label
               className={cn(
-                'absolute left-0 pointer-events-none text-base transition-all duration-200',
+                'absolute left-0 pointer-events-none text-base font-medium transition-all duration-200 flex items-center',
                 isActive
-                  ? '-top-5 text-xs text-primary-500'
-                  : 'top-0 text-neutral-400 leading-[48px]',
+                  ? '-top-5 text-xs text-primary-400'
+                  : 'top-0 text-white/50 leading-[48px]',
                 error && isActive && 'text-red-400',
               )}
               initial={false}
@@ -71,6 +71,7 @@ export default function InputField({
                 y: isActive ? -8 : 0,
                 scale: isActive ? 0.85 : 1,
               }}
+              transition={{ duration: 0.2 }}
             >
               {label}
             </motion.label>
@@ -82,8 +83,9 @@ export default function InputField({
               onFocus={() => setFocused(true)}
               onBlur={() => setFocused(false)}
               autoFocus={autoFocus}
-              className="w-full bg-transparent text-neutral-900 text-base outline-none placeholder:text-transparent autofill:bg-transparent"
+              className="w-full bg-transparent text-white text-base outline-none placeholder:text-transparent"
               autoComplete={isPassword ? 'current-password' : 'email'}
+              style={{ paddingTop: isActive ? '8px' : '0' }}
             />
           </div>
 
@@ -91,7 +93,7 @@ export default function InputField({
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="shrink-0 p-1 text-neutral-400 hover:text-neutral-600 transition-colors"
+              className="shrink-0 p-1 text-white/50 hover:text-white/80 transition-colors"
               tabIndex={-1}
             >
               {showPassword ? (
@@ -111,9 +113,8 @@ export default function InputField({
         </div>
       </motion.div>
 
-      {/* Error message */}
       <motion.p
-        className="text-red-500 text-xs mt-1.5 ml-1"
+        className="text-red-400 text-xs mt-1.5 ml-1"
         initial={{ opacity: 0, y: -4 }}
         animate={{ opacity: error ? 1 : 0, y: error ? 0 : -4 }}
         transition={{ duration: 0.15 }}

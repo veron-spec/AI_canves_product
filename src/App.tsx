@@ -1,6 +1,4 @@
 import { HashRouter, Routes, Route, Navigate } from 'react-router-dom'
-import LaunchPage from './pages/LaunchPage'
-import SplashPage from './pages/SplashPage'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 import WorkspacePage from './pages/WorkspacePage'
@@ -16,8 +14,7 @@ export default function App() {
   return (
     <HashRouter>
       <Routes>
-        <Route path="/" element={<LaunchPage />} />
-        <Route path="/splash" element={<SplashPage />} />
+        <Route path="/" element={<Navigate to="/login" replace />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route
@@ -28,7 +25,7 @@ export default function App() {
             </ProtectedRoute>
           }
         />
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
     </HashRouter>
   )
