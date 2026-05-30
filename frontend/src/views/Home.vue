@@ -1,10 +1,12 @@
 <script setup lang="ts">
+
+import CanvasBoard from '@/views/CanvasBoard.vue'
+
 </script>
 
 <template>
   <div class="page">
-    <h1>首页</h1>
-    <p>欢迎来到首页！</p>
+    <CanvasBoard />
   </div>
 </template>
 
